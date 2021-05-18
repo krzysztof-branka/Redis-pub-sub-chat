@@ -6,6 +6,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (element) element.innerText = text
   }
 
+  window.redis = require('redis');
+  window.redisScan = require('node-redis-scan');
+  const utils = require("util");
+  window.promisify = utils.promisify;
+
   for (const type of ['chrome', 'node', 'electron']) {
     replaceText(`${type}-version`, process.versions[type])
   }

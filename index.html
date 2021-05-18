@@ -1,19 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+	<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+	<title>Hello World!</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="view active" id="login-view">
+			<form id="login-form" action="#">
+				<label for="username">Name:</label>
+				<input type="text" name="" id="username">
+				<button type="submit">Login</button>
+			</form>
+		</div>
+		<div class="view" id="chats-view">
+			<div class="chats">
+				<div class="chat-label">Chats:</div>
+				<div class="chat-picker" data-chat-id="all-chat" data-chat-type="all-chat">
+					<span class="chat-picker-name">All chat</span>
+					<span class="chat-picker-active"></span>
+				</div>
+				<div class="chat-picker" data-chat-id="en-trading-1" data-chat-type="single">
+					<span class="chat-picker-name">[EN] Trading 1</span>
+					<span class="chat-picker-active"></span>
+				</div>
+				<div class="chat-picker" data-chat-id="en-trading-2" data-chat-type="single">
+					<span class="chat-picker-name">[EN] Trading 2</span>
+					<span class="chat-picker-active"></span>
+				</div>
+				<div class="chat-picker" data-chat-id="pl-grouping-1" data-chat-type="single">
+					<span class="chat-picker-name">[PL] Grouping 1</span>
+					<span class="chat-picker-active"></span>
+				</div>
+				<div class="chat-picker" data-chat-id="en-grouping-1" data-chat-type="single">
+					<span class="chat-picker-name">[EN] Grouping 1</span>
+					<span class="chat-picker-active"></span>
+				</div>
+				<div class="chat-label">Topics:</div>
+				<div class="chat-picker" data-chat-id="*-grouping-*" data-chat-type="pattern">
+					<span class="chat-picker-name">Grouping</span>
+				</div>
+				<div class="chat-picker" data-chat-id="*-trading-*" data-chat-type="pattern">
+					<span class="chat-picker-name">Trading</span>
+				</div>
+				<div class="chat-label">Languages:</div>
+				<div class="chat-picker" data-chat-id="en-*" data-chat-type="pattern">
+					<span class="chat-picker-name">English</span>
+				</div>
+				<div class="chat-picker" data-chat-id="pl-*" data-chat-type="pattern">
+					<span class="chat-picker-name">Polish</span>
+				</div>
+
+			</div>
+			<div class="chat-wrapper">
+				<div id="chat-info"></div>
+				<div id="chat-output"></div>
+				<form action="#" id="chat-submit">
+					<input id="chat-input" type="text">
+					<button type="submit">Send</button>
+				</form>
+			</div>
+			<div class="people">
+				<div class="chat-label">Current chat users:</div>
+				<div class="users"></div>
+				<div class="chat-label">Friends:</div>
+				<div class="friends"></div>
+				<div class="add-friend">
+					<span>Add friend:</span>
+					<form id="add-friend-form" action="#">
+						<input id="add-friend" type="text">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- You can also require other files to run in this process -->
+	<script src="./Redis.js"></script>
+	<script src="./renderer.js"></script>
+</body>
+
 </html>
